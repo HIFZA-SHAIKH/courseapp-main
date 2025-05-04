@@ -73,7 +73,7 @@ function OurCourses() {
           <div key={course._id} className="bg-white shadow-md rounded-lg p-4">
             {/* Course Image */}
             <img
-              src={course?.image?.url}
+              src={course?.image}
               alt={course.title}
               className="h-40 w-full object-cover rounded-t-lg"
             />

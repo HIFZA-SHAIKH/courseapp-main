@@ -160,7 +160,7 @@ function Purchases() {
                   <img
                     className="rounded-lg w-full h-48 object-cover"
                     src={
-                      purchase.image?.url || "https://via.placeholder.com/200"
+                      purchase.image || "https://via.placeholder.com/200"
                     }
                     alt={purchase.title}
                   />

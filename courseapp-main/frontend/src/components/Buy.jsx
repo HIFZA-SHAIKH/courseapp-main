@@ -57,60 +57,58 @@ function Buy() {
   const handlePurchase = async (event) => {
     event.preventDefault();
 
-    if (!stripe || !elements) {
-      console.log("Stripe or Element not found");
-      return;
-    }
+    // if (!stripe || !elements) {
+    //   console.log("Stripe or Element not found");
+    //   return;
+    // }
 
-    setLoading(true);
-    const card = elements.getElement(CardElement);
+    // setLoading(true);
+    // const card = elements.getElement(CardElement);
 
-    if (card == null) {
-      console.log("Cardelement not found");
-      setLoading(false);
-      return;
-    }
+    // if (card == null) {
+    //   console.log("Cardelement not found");
+    //   setLoading(false);
+    //   return;
+    // }
 
     // Use your card Element with other Stripe.js APIs
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card,
-    });
+    // const { error, paymentMethod } = await stripe.createPaymentMethod({
+    //   type: "card",
+    //   card,
+    // });
 
-    if (error) {
-      console.log("Stripe PaymentMethod Error: ", error);
-      setLoading(false);
-      setCardError(error.message);
-    } else {
-      console.log("[PaymentMethod Created]", paymentMethod);
-    }
-    if (!clientSecret) {
-      console.log("No client secret found");
-      setLoading(false);
-      return;
-    }
-    const { paymentIntent, error: confirmError } =
-      await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: card,
-          billing_details: {
-            name: user?.user?.firstName,
-            email: user?.user?.email,
-          },
-        },
-      });
-    if (confirmError) {
-      setCardError(confirmError.message);
-    } else if (paymentIntent.status === "succeeded") {
-      console.log("Payment succeeded: ", paymentIntent);
-      setCardError("your payment id: ", paymentIntent.id);
+    // if (error) {
+    //   console.log("Stripe PaymentMethod Error: ", error);
+    //   setLoading(false);
+    //   setCardError(error.message);
+    // } else {
+    //   console.log("[PaymentMethod Created]", paymentMethod);
+    // }
+    // if (!clientSecret) {
+    //   console.log("No client secret found");
+    //   setLoading(false);
+    //   return;
+    // }
+    // const { paymentIntent, error: confirmError } =
+    //   await stripe.confirmCardPayment(clientSecret, {
+    //     payment_method: {
+    //       card: card,
+    //       billing_details: {
+    //         name: user?.user?.firstName,
+    //         email: user?.user?.email,
+    //       },
+    //     },
+    //   });
+  if (true) {
+      // console.log("Payment succeeded: ", paymentIntent);
+      // setCardError("your payment id: ", paymentIntent.id);
       const paymentInfo = {
         email: user?.user?.email,
         userId: user.user._id,
         courseId: courseId,
-        paymentId: paymentIntent.id,
-        amount: paymentIntent.amount,
-        status: paymentIntent.status,
+        paymentId: 'xxxxx',
+        amount: course.price,
+        status: "paid",
       };
       console.log("Payment info: ", paymentInfo);
       await axios

@@ -25,8 +25,8 @@ function UpdateCourse() {
         setTitle(data.course.title);
         setDescription(data.course.description);
         setPrice(data.course.price);
-        setImage(data.course.image.url);
-        setImagePreview(data.course.image.url);
+        setImage(data.course.image);
+        setImagePreview(data.course.image);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -126,17 +126,15 @@ function UpdateCourse() {
             <div className="space-y-2">
               <label className="block text-lg">Course Image</label>
               <div className="flex items-center justify-center">
-                <img
-                  src={imagePreview ? `${imagePreview}` : "/imgPL.webp"}
-                  alt="Course"
-                  className="w-full max-w-sm h-auto rounded-md object-cover"
+              <input
+                 type="text"
+                 placeholder="Enter your course imahe url"
+                 value={image}
+                 onChange={(e) => setImage(e.target.value)}
+                 className="w-full px-3 py-2 border border-gray-400   rounded-md outline-none"
                 />
               </div>
-              <input
-                type="file"
-                onChange={changePhotoHandler}
-                className="w-full px-3 py-2 border border-gray-400 rounded-md outline-none"
-              />
+              
             </div>
 
             <button

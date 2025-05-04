@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { string } from "zod";
 
 const courseSchema = new mongoose.Schema({
   title: {
@@ -14,14 +15,8 @@ const courseSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
+    type : String,
+    required: true,
   },
   creatorId: {
     type: mongoose.Types.ObjectId,
